@@ -5,7 +5,14 @@
 {{ if eq .Type "posts" }}
 <!-- Page Author & Description -->
 <meta name="author" content="{{ if isset .Params "author" }}{{ .Params.author }}{{ else }}{{ .Site.Params.author }}{{ end }}" />
+{{ if .Description }}
+<meta name="description" content="{{ .Description | plainify }}" />
+{{ else }}
 <meta name="description" content="{{ .Summary | plainify }}" />
+{{ end }}
+{{ if .Keywords }}
+<meta name="keywords" content="{{ delimit .Keywords ',' }}" />
+{{ end }}
 {{ else }}
 <!-- Site Author & Description -->
 <meta name="author" content="{{ .Site.Params.author }}" />
